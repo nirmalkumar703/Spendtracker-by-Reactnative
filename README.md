@@ -1,97 +1,228 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# SpendMonitor – Personal Finance Tracker
 
-# Getting Started
+A modern React Native application for tracking income, expenses, budgets, and financial insights. SpendMonitor helps users manage daily transactions, monitor spending patterns, and visualize financial data through interactive dashboards.
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+---
 
-## Step 1: Start Metro
+## Features
 
-First, you will need to run **Metro**, the JavaScript build tool for React Native.
+### Transaction Management
 
-To start the Metro dev server, run the following command from the root of your React Native project:
+* Add income and expense transactions
+* Categorize transactions
+* Store merchant details
+* Track transaction dates
+* Input validation and error handling
+* Persistent local storage
 
-```sh
-# Using npm
-npm start
+### Dashboard Analytics
 
-# OR using Yarn
-yarn start
+* Total balance overview
+* Income vs Expense summary
+* Expense breakdown using Pie Chart
+* Monthly spending trends using Line Chart
+* Category-wise expense visualization
+* Interactive financial insights
+
+### Profile Management
+
+* User profile interface
+* Transaction statistics
+* Financial activity overview
+* Personalized dashboard
+
+### Settings
+
+* Notification preferences
+* Biometric lock settings
+* Data export options
+* Backup and restore options
+* Language preferences
+
+---
+
+## Tech Stack
+
+### Frontend
+
+* React Native
+* TypeScript
+
+### Navigation
+
+* React Navigation
+* Drawer Navigation
+
+### Data Visualization
+
+* react-native-gifted-charts
+* react-native-svg
+
+### Storage
+
+* AsyncStorage
+
+### UI Components
+
+* react-native-vector-icons
+* react-native-element-dropdown
+
+---
+
+## Project Structure
+
+```text
+src/
+│
+├── assets/
+│
+├── components/
+│   ├── common/
+│   └── transaction/
+│
+├── screens/
+│   ├── home/
+│   ├── dashboard/
+│   ├── profile/
+│   └── settings/
+│
+├── services/
+│   └── storage/
+│
+├── navigation/
+│
+├── types/
+│
+└── utils/
 ```
 
-## Step 2: Build and run your app
+---
 
-With Metro running, open a new terminal window/pane from the root of your React Native project, and use one of the following commands to build and run your Android or iOS app:
+## Installation
 
-### Android
+### Clone Repository
 
-```sh
-# Using npm
-npm run android
-
-# OR using Yarn
-yarn android
+```bash
+git clone https://github.com/your-username/SpendMonitor.git
+cd SpendMonitor
 ```
 
-### iOS
+### Install Dependencies
 
-For iOS, remember to install CocoaPods dependencies (this only needs to be run on first clone or after updating native deps).
-
-The first time you create a new project, run the Ruby bundler to install CocoaPods itself:
-
-```sh
-bundle install
+```bash
+npm install
 ```
 
-Then, and every time you update your native dependencies, run:
+### iOS Setup
 
-```sh
-bundle exec pod install
+```bash
+cd ios
+pod install
+cd ..
 ```
 
-For more information, please visit [CocoaPods Getting Started guide](https://guides.cocoapods.org/using/getting-started.html).
+### Run Android
 
-```sh
-# Using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+```bash
+npx react-native run-android
 ```
 
-If everything is set up correctly, you should see your new app running in the Android Emulator, iOS Simulator, or your connected device.
+### Run iOS
 
-This is one way to run your app — you can also build it directly from Android Studio or Xcode.
+```bash
+npx react-native run-ios
+```
 
-## Step 3: Modify your app
+---
 
-Now that you have successfully run the app, let's make changes!
+## Required Packages
 
-Open `App.tsx` in your text editor of choice and make some changes. When you save, your app will automatically update and reflect these changes — this is powered by [Fast Refresh](https://reactnative.dev/docs/fast-refresh).
+```bash
+npm install @react-navigation/native
+npm install @react-navigation/drawer
+npm install react-native-safe-area-context
+npm install react-native-screens
+npm install @react-native-async-storage/async-storage
+npm install react-native-gifted-charts
+npm install react-native-svg
+npm install react-native-element-dropdown
+npm install react-native-vector-icons
+```
 
-When you want to forcefully reload, for example to reset the state of your app, you can perform a full reload:
+---
 
-- **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Dev Menu**, accessed via <kbd>Ctrl</kbd> + <kbd>M</kbd> (Windows/Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (macOS).
-- **iOS**: Press <kbd>R</kbd> in iOS Simulator.
+## Screens
 
-## Congratulations! :tada:
+### Home Screen
 
-You've successfully run and modified your React Native App. :partying_face:
+* Add transactions
+* View recent transactions
+* Income and expense summary
+* Current balance
 
-### Now what?
+### Dashboard Screen
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [docs](https://reactnative.dev/docs/getting-started).
+* Expense Pie Chart
+* Spending Trend Line Chart
+* Category Analysis
+* Financial Overview
 
-# Troubleshooting
+### Profile Screen
 
-If you're having issues getting the above steps to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+* User Profile
+* Total Transactions
+* Financial Statistics
 
-# Learn More
+### Settings Screen
 
-To learn more about React Native, take a look at the following resources:
+* Notifications
+* Biometric Security
+* Backup & Restore
+* Data Export
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+---
+
+## Data Model
+
+```typescript
+interface Transaction {
+  id: string;
+  amount: number;
+  merchant: string;
+  category: string;
+  type: 'income' | 'expense';
+  dateTime: string;
+  paymentApp: string;
+  transactionMode: string;
+}
+```
+
+---
+
+## Future Enhancements
+
+* Cloud Backup
+* User Authentication
+* Budget Planning
+* Expense Prediction
+* PDF Reports
+* Multi-Currency Support
+* Dark Mode
+* Export to Excel
+* Financial Goals Tracking
+
+---
+
+## Author
+
+Nirmal Kumar
+
+B.Tech Artificial Intelligence and Data Science
+
+Karpagam College of Engineering
+
+---
+
+## License
+
+This project is developed for educational and learning purposes.
